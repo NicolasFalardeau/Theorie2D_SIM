@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float _maxHeight = 0f;
 
     [Header("Tir")]
-    // À COMPLÉTER 5.2 : le prefab du laser et le point de tir
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private Laser _laserPrefab;
     [Tooltip("Délai minimal entre deux tirs, en secondes")]
     [SerializeField] private float _fireDelay = 0.3f;
 
@@ -110,7 +111,10 @@ public class Player : MonoBehaviour
         // Corps cinématique : sa prochaine position, limitée à l'écran
         Vector2 step = _moveInput * (_moveSpeed * Time.fixedDeltaTime);
         Vector2 target = _rb.position + step;
-        // À COMPLÉTER 4.3 : garder la cible dans l'écran
+
+        target.x = Mathf.Clamp(target.x, _minPosition.x, _maxPosition.x);
+        target.y = Mathf.Clamp(target.y, _minPosition.y, _maxPosition.y);
+
         _rb.MovePosition(target);
     }
 
@@ -160,7 +164,7 @@ public class Player : MonoBehaviour
 
     private void Fire()
     {
-        // À COMPLÉTER 5.2 : créer un laser au point de tir
+        Instantiate(_laserPrefab, _firePoint.position, Quaternion.identity);
         _nextFireTime = Time.time + _fireDelay;
     }
 
@@ -176,6 +180,13 @@ public class Player : MonoBehaviour
 
     private void ComputeLimits()
     {
-        // À COMPLÉTER 4.3 : calculer les limites de l'écran
+        Camera mainCamera = Camera.main;
+        Vector2 bottomLeft = mainCamera.ViewportToWorldPoint(Vector2.zero);
+        Vector2 topRight = mainCamera.ViewportToWorldPoint(Vector2.one);
+
+        Vector2 halfSize = _spriteRenderer.bounds.extents;
+
+        _minPosition = bottomLeft + halfSize;
+        _maxPosition = new Vector2(topRight.x - halfSize.x, _maxHeight);
     }
 }
