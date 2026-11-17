@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8798270594706418516}
   - component: {fileID: 1560786606748115830}
   - component: {fileID: 8549245454828988409}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5302846604018742567}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -152,7 +152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567097253919367007}
   - component: {fileID: 3970984165131722707}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1176936964831889969}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
